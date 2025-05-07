@@ -5,11 +5,19 @@ using MH.UI.MAUI.Interfaces;
 using Microsoft.Maui;
 using Microsoft.Maui.Handlers;
 using System.Collections;
+using System.Linq;
 
 namespace MH.UI.MAUI.Droid.Handlers;
 
 public class VirtualizedItemsViewHandler : ViewHandler<VirtualizedItemsView, RecyclerView>, IVirtualizedItemsViewHandler {
-  public VirtualizedItemsViewHandler(IPropertyMapper mapper, CommandMapper? commandMapper = null) : base(mapper, commandMapper) { }
+  public static IPropertyMapper<VirtualizedItemsView, VirtualizedItemsViewHandler> PropertyMapper =
+    new PropertyMapper<VirtualizedItemsView, VirtualizedItemsViewHandler>(ViewMapper) {
+      [nameof(VirtualizedItemsView.ItemsSource)] = _mapItemsSource
+    };
+
+  public static CommandMapper<VirtualizedItemsView, VirtualizedItemsViewHandler> CommandMapper = new(ViewCommandMapper);
+
+  public VirtualizedItemsViewHandler() : base(PropertyMapper, CommandMapper) { }
 
   protected override RecyclerView CreatePlatformView() {
     var recyclerView = new RecyclerView(Context);
@@ -17,7 +25,11 @@ public class VirtualizedItemsViewHandler : ViewHandler<VirtualizedItemsView, Rec
     return recyclerView;
   }
 
-  public void SetItemsSource(IEnumerable items) {
-    PlatformView.SetAdapter(new CustomRecyclerAdapter(items));
+  public void SetItemsSource(IEnumerable? items) {
+    PlatformView.SetAdapter(new CustomRecyclerAdapter(items?.Cast<string>() ?? []));
+  }
+
+  private static void _mapItemsSource(VirtualizedItemsViewHandler handler, VirtualizedItemsView view) {
+    handler.SetItemsSource(view.ItemsSource);
   }
 }
