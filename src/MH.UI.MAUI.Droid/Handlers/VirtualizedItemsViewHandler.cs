@@ -25,8 +25,18 @@ public class VirtualizedItemsViewHandler : ViewHandler<VirtualizedItemsView, Rec
     return recyclerView;
   }
 
+  protected override void ConnectHandler(RecyclerView platformView) {
+    base.ConnectHandler(platformView);
+    SetItemsSource(VirtualView.ItemsSource);
+  }
+
+  protected override void DisconnectHandler(RecyclerView platformView) {
+    platformView.SetAdapter(null);
+    base.DisconnectHandler(platformView);
+  }
+
   public void SetItemsSource(IEnumerable? items) {
-    PlatformView.SetAdapter(new CustomRecyclerAdapter(items?.Cast<string>() ?? []));
+    PlatformView.SetAdapter(new CustomRecyclerAdapter(items?.Cast<string>() ?? [], Context));
   }
 
   private static void _mapItemsSource(VirtualizedItemsViewHandler handler, VirtualizedItemsView view) {

@@ -1,4 +1,6 @@
-﻿using Android.Graphics;
+﻿using Android.Content;
+using Android.Graphics;
+using Android.Provider;
 using Android.Views;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
@@ -9,9 +11,13 @@ namespace MH.UI.MAUI.Droid.Adapters;
 
 public class CustomRecyclerAdapter : RecyclerView.Adapter {
   private readonly IList<string> _imagePaths;
+  private readonly Context _context;
+  private readonly Dictionary<string, Bitmap> _thumbnailCache;
 
-  public CustomRecyclerAdapter(IEnumerable<string> imagePaths) {
+  public CustomRecyclerAdapter(IEnumerable<string> imagePaths, Context context) {
     _imagePaths = imagePaths.ToList();
+    _context = context;
+    _thumbnailCache = new Dictionary<string, Bitmap>();
   }
 
   public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
@@ -21,9 +27,8 @@ public class CustomRecyclerAdapter : RecyclerView.Adapter {
 
   public override void OnBindViewHolder(RecyclerView.ViewHolder holder, int position) {
     var viewHolder = (CustomViewHolder)holder;
-    // Calculate start index for 3 images per row
     int startIndex = position * 3;
-    viewHolder.BindImages(_imagePaths, startIndex);
+    viewHolder.BindImages(_imagePaths, startIndex, _context, _thumbnailCache);
   }
 
   public override int ItemCount => (_imagePaths.Count + 2) / 3; // Ceiling division for rows
@@ -40,21 +45,74 @@ public class CustomViewHolder : RecyclerView.ViewHolder {
     Image3 = itemView.FindViewById<ImageView>(Resource.Id.image3);
   }
 
-  public void BindImages(IList<string> imagePaths, int startIndex) {
-    // Load images or clear if out of range
-    if (startIndex < imagePaths.Count)
-      Image1.SetImageBitmap(BitmapFactory.DecodeFile(imagePaths[startIndex]));
-    else
+  public void BindImages(IList<string> imagePaths, int startIndex, Context context,
+    Dictionary<string, Bitmap> thumbnailCache) {
+    if (startIndex < imagePaths.Count) {
+      Image1.SetImageBitmap(GetThumbnailBitmap(imagePaths[startIndex], context, thumbnailCache));
+    }
+    else {
       Image1.SetImageBitmap(null);
+    }
 
-    if (startIndex + 1 < imagePaths.Count)
-      Image2.SetImageBitmap(BitmapFactory.DecodeFile(imagePaths[startIndex + 1]));
-    else
+    if (startIndex + 1 < imagePaths.Count) {
+      Image2.SetImageBitmap(GetThumbnailBitmap(imagePaths[startIndex + 1], context, thumbnailCache));
+    }
+    else {
       Image2.SetImageBitmap(null);
+    }
 
-    if (startIndex + 2 < imagePaths.Count)
-      Image3.SetImageBitmap(BitmapFactory.DecodeFile(imagePaths[startIndex + 2]));
-    else
+    if (startIndex + 2 < imagePaths.Count) {
+      Image3.SetImageBitmap(GetThumbnailBitmap(imagePaths[startIndex + 2], context, thumbnailCache));
+    }
+    else {
       Image3.SetImageBitmap(null);
+    }
+  }
+
+  private Bitmap GetThumbnailBitmap(string imagePath, Context context, Dictionary<string, Bitmap> thumbnailCache) {
+    // Check cache first
+    /*if (thumbnailCache.TryGetValue(imagePath, out var cachedBitmap) && cachedBitmap != null) {
+      return cachedBitmap;
+    }*/
+
+    // Query MediaStore for the image's _ID
+    var imageId = GetImageId(imagePath, context);
+    if (imageId == -1) {
+      return null; // Fallback if no ID found
+    }
+
+    // Get thumbnail bitmap from MediaStore
+    var thumbnail = MediaStore.Images.Thumbnails.GetThumbnail(
+      context.ContentResolver,
+      imageId,
+      ThumbnailKind.MicroKind,
+      new() { InSampleSize = 1 });
+
+    /*if (thumbnail != null) {
+      thumbnailCache[imagePath] = thumbnail; // Cache the thumbnail
+    }*/
+
+    return thumbnail;
+  }
+
+  public static long GetImageId(string filePath, Context context) {
+    if (MediaStore.Images.Media.ExternalContentUri is not { } uri) return -1;
+
+    var cursor = context.ContentResolver?.Query(
+      uri,
+      [MediaStore.Images.Media.InterfaceConsts.Id],
+      $"{MediaStore.Images.Media.InterfaceConsts.Data}=?",
+      [filePath],
+      null);
+
+    if (cursor?.MoveToFirst() != true) {
+      cursor?.Close();
+      return -1;
+    }
+
+    var id = cursor.GetLong(0);
+    cursor.Close();
+
+    return id;
   }
 }
