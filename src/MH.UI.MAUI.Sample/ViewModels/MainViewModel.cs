@@ -9,7 +9,7 @@ public class MainViewModel {
 
   public MainViewModel() {
     // Hardcoded folder path for test images
-    var folderPath = "/storage/A43E-C587/Pictures/Digi/";
+    var folderPath = "/storage/emulated/0/DCIM/Camera/";
     if (Directory.Exists(folderPath)) {
       var images = Directory.GetFiles(folderPath, "*.jpg")
         .Concat(Directory.GetFiles(folderPath, "*.png"))

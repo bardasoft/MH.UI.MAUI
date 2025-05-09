@@ -1,23 +1,26 @@
 ﻿using Android.Content;
 using Android.Graphics;
+using Android.OS;
 using Android.Provider;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace MH.UI.MAUI.Droid.Adapters;
 
 public class CustomRecyclerAdapter : RecyclerView.Adapter {
   private readonly IList<string> _imagePaths;
   private readonly Context _context;
-  private readonly Dictionary<string, Bitmap> _thumbnailCache;
+  private readonly LruCache _thumbnailCache;
 
   public CustomRecyclerAdapter(IEnumerable<string> imagePaths, Context context) {
     _imagePaths = imagePaths.ToList();
     _context = context;
-    _thumbnailCache = new Dictionary<string, Bitmap>();
+    _thumbnailCache = new(50);
   }
 
   public override RecyclerView.ViewHolder OnCreateViewHolder(ViewGroup parent, int viewType) {
@@ -35,6 +38,8 @@ public class CustomRecyclerAdapter : RecyclerView.Adapter {
 }
 
 public class CustomViewHolder : RecyclerView.ViewHolder {
+  private readonly Handler? _mainHandler;
+
   public ImageView Image1 { get; }
   public ImageView Image2 { get; }
   public ImageView Image3 { get; }
@@ -43,54 +48,60 @@ public class CustomViewHolder : RecyclerView.ViewHolder {
     Image1 = itemView.FindViewById<ImageView>(Resource.Id.image1);
     Image2 = itemView.FindViewById<ImageView>(Resource.Id.image2);
     Image3 = itemView.FindViewById<ImageView>(Resource.Id.image3);
+    if (Looper.MainLooper != null) _mainHandler = new(Looper.MainLooper);
   }
 
-  public void BindImages(IList<string> imagePaths, int startIndex, Context context,
-    Dictionary<string, Bitmap> thumbnailCache) {
+  public void BindImages(IList<string> imagePaths, int startIndex, Context context, LruCache thumbnailCache) {
+    // Image 1
     if (startIndex < imagePaths.Count) {
-      Image1.SetImageBitmap(GetThumbnailBitmap(imagePaths[startIndex], context, thumbnailCache));
+      LoadThumbnailAsync(imagePaths[startIndex], Image1, context, thumbnailCache);
     }
     else {
       Image1.SetImageBitmap(null);
     }
 
+    // Image 2
     if (startIndex + 1 < imagePaths.Count) {
-      Image2.SetImageBitmap(GetThumbnailBitmap(imagePaths[startIndex + 1], context, thumbnailCache));
+      LoadThumbnailAsync(imagePaths[startIndex + 1], Image2, context, thumbnailCache);
     }
     else {
       Image2.SetImageBitmap(null);
     }
 
+    // Image 3
     if (startIndex + 2 < imagePaths.Count) {
-      Image3.SetImageBitmap(GetThumbnailBitmap(imagePaths[startIndex + 2], context, thumbnailCache));
+      LoadThumbnailAsync(imagePaths[startIndex + 2], Image3, context, thumbnailCache);
     }
     else {
       Image3.SetImageBitmap(null);
     }
   }
 
-  private Bitmap GetThumbnailBitmap(string imagePath, Context context, Dictionary<string, Bitmap> thumbnailCache) {
-    // Check cache first
-    /*if (thumbnailCache.TryGetValue(imagePath, out var cachedBitmap) && cachedBitmap != null) {
-      return cachedBitmap;
+  private async void LoadThumbnailAsync(string imagePath, ImageView imageView, Context context, LruCache thumbnailCache) {
+    /*if (thumbnailCache.Get(imagePath) is Bitmap cachedBitmap) {
+      imageView.SetImageBitmap(cachedBitmap);
+      return;
     }*/
 
-    // Query MediaStore for the image's _ID
-    var imageId = GetImageId(imagePath, context);
-    if (imageId == -1) {
-      return null; // Fallback if no ID found
+    var thumbnail = await Task.Run(() => GetThumbnailBitmap(imagePath, context, []));
+    if (thumbnail != null) {
+      //thumbnailCache.Put(imagePath, thumbnail);
+      _mainHandler?.Post(() => imageView.SetImageBitmap(thumbnail));
     }
+    else {
+      _mainHandler?.Post(() => imageView.SetImageBitmap(null));
+    }
+  }
 
-    // Get thumbnail bitmap from MediaStore
+  private Bitmap? GetThumbnailBitmap(string imagePath, Context context, Dictionary<string, Bitmap> thumbnailCache) {
+    var imageId = GetImageId(imagePath, context);
+    if (imageId == -1) return null;
+
     var thumbnail = MediaStore.Images.Thumbnails.GetThumbnail(
       context.ContentResolver,
       imageId,
-      ThumbnailKind.MicroKind,
+      ThumbnailKind.MiniKind,
       new() { InSampleSize = 1 });
-
-    /*if (thumbnail != null) {
-      thumbnailCache[imagePath] = thumbnail; // Cache the thumbnail
-    }*/
 
     return thumbnail;
   }
