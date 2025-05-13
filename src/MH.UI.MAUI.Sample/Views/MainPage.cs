@@ -1,11 +1,7 @@
-﻿using MH.UI.MAUI.Sample.ViewModels;
-using Microsoft.Maui.Controls;
+﻿namespace MH.UI.MAUI.Sample.Views;
 
-namespace MH.UI.MAUI.Sample.Views;
-
-public partial class MainPage : ContentPage {
+public partial class MainPage {
   public MainPage() {
     InitializeComponent();
-    BindingContext = new MainViewModel();
   }
 }
