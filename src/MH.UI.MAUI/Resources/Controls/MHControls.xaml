@@ -1,0 +1,11 @@
+<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  x:Class="MH.UI.MAUI.Resources.Controls.MHControls">
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="GridSplitter.xaml"/>
+    <ResourceDictionary Source="SlidePanelHost.xaml"/>
+    <ResourceDictionary Source="SlidePanelsGridHost.xaml"/>
+  </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
