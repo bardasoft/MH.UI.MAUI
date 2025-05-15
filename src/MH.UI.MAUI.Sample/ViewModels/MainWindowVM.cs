@@ -73,10 +73,10 @@ public class MainWindowVM : ObservableObject {
       new(Dock.Right, RightContent, 200),
       new(Dock.Bottom, StatusBar, 0),
       MiddleContent,
-      new[] { // Left, Top, Right, Bottom, FullScreen (not part of SlidePanelsGrid)
-        new[] { false, true, true, true, false }, // browse mode
-        new[] { false, false, false, true, false } // view mode
-      });
+      [ // Left, Top, Right, Bottom, FullScreen (not part of SlidePanelsGrid)
+        [true, true, true, true, false], // browse mode
+        [false, false, false, true, false] // view mode
+      ]);
     
     //SwitchToBrowserCommand = new(() => IsInViewMode = false, () => Core.VM.MediaViewer.IsVisible);
 
