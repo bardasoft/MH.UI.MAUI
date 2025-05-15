@@ -7,7 +7,7 @@
     <Setter Property="ControlTemplate">
       <Setter.Value>
         <ControlTemplate>
-          <ContentPresenter Content="{Binding ViewModel.Content, Source={RelativeSource TemplatedParent}}"/>
+          <c:TemplatedContentView BindingContext="{Binding ViewModel.Content, Source={RelativeSource TemplatedParent}}"/>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
