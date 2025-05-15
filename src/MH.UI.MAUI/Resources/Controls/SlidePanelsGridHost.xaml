@@ -32,26 +32,26 @@
           Grid.Row="1"
           HorizontalOptions="Start"
           WidthRequest="{Binding PanelLeft.Size, Mode=OneWay}"
-          BindingContext="{Binding PanelLeft}"/>
+          ViewModel="{Binding PanelLeft}"/>
 
         <c:SlidePanelHost
           x:Name="PART_RightPanel"
           Grid.Row="1"
           HorizontalOptions="End"
           WidthRequest="{Binding PanelRight.Size, Mode=OneWay}"
-          BindingContext="{Binding PanelRight}"/>
+          ViewModel="{Binding PanelRight}"/>
       </Grid>
 
       <c:SlidePanelHost
         x:Name="PART_TopPanel"
         VerticalOptions="Start"
         HeightRequest="{Binding PanelTop.Size, Mode=OneWay}"
-        BindingContext="{Binding PanelTop}"/>
+        ViewModel="{Binding PanelTop}"/>
 
       <c:SlidePanelHost
         x:Name="PART_BottomPanel"
         VerticalOptions="End"
-        BindingContext="{Binding PanelBottom}"/>
+        ViewModel="{Binding PanelBottom}"/>
     </Grid>
   </ControlTemplate>
 
