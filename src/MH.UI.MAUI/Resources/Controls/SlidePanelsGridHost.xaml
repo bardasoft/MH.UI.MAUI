@@ -2,8 +2,7 @@
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   xmlns:c="clr-namespace:MH.UI.MAUI.Controls;assembly=MH.UI.MAUI"
-  xmlns:conv="clr-namespace:MH.UI.MAUI.Converters;assembly=MH.UI.MAUI"
-  xmlns:xc="clr-namespace:MH.UI.Controls;assembly=MH.UI">
+  xmlns:conv="clr-namespace:MH.UI.MAUI.Converters;assembly=MH.UI.MAUI">
 
   <ControlTemplate x:Key="MH.CT.SlidePanelsGridHost">
     <Grid Background="Transparent" BindingContext="{Binding ViewModel, Source={RelativeSource TemplatedParent}}">
@@ -24,7 +23,7 @@
           </Grid.ColumnDefinitions>
 
           <c:GridSplitter Grid.Column="1" IsVisible="{Binding PanelLeft.IsPinned, Converter={x:Static conv:VisibilityConverter.TrueToVisible}}"/>
-          <ContentPresenter Grid.Column="2" BindingContext="{Binding ViewModel.PanelMiddle, Source={RelativeSource TemplatedParent}}"/>
+          <c:TemplatedContentView Grid.Column="2" BindingContext="{Binding ViewModel.PanelMiddle, Source={RelativeSource TemplatedParent}}"/>
           <c:GridSplitter Grid.Column="3" IsVisible="{Binding PanelRight.IsPinned, Converter={x:Static conv:VisibilityConverter.TrueToVisible}}"/>
         </Grid>
 
