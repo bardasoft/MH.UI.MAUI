@@ -4,6 +4,7 @@
   x:Class="MH.UI.MAUI.Resources.Controls.MHControls">
 
   <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="FlatTreeItemHost.xaml"/>
     <ResourceDictionary Source="GridSplitter.xaml"/>
     <ResourceDictionary Source="SlidePanelHost.xaml"/>
     <ResourceDictionary Source="SlidePanelsGridHost.xaml"/>
