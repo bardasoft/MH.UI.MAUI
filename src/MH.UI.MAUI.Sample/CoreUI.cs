@@ -11,6 +11,8 @@ public class CoreUI {
       new TypeDataTemplateSelector([
         new(typeof(IListItem), "MH.DT.IListItem"),
         new(typeof(FolderTreeViewVM), "S.DT.Views.Controls.FolderTreeViewV"),
+        new(typeof(MiddleContentVM), "S.DT.Views.Layout.MiddleContentV"),
+        new(typeof(RightContentVM), "S.DT.Views.Layout.RightContentV")
       ]);
 
     // TODO PORT
