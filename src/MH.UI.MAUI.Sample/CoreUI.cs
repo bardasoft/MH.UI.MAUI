@@ -1,4 +1,5 @@
 ﻿using MH.UI.MAUI.Controls;
+using MH.UI.MAUI.Sample.ViewModels.Controls;
 using MH.UI.MAUI.Sample.ViewModels.Layout;
 using MH.Utils.Interfaces;
 
@@ -9,7 +10,7 @@ public class CoreUI {
     TemplatedContentView.FallbackDataTemplateSelector =
       new TypeDataTemplateSelector([
         new(typeof(IListItem), "MH.DT.IListItem"),
-        new(typeof(MiddleContentVM), "S.DT.Views.Layout.MiddleContentV")
+        new(typeof(FolderTreeViewVM), "S.DT.Views.Controls.FolderTreeViewV"),
       ]);
 
     // TODO PORT

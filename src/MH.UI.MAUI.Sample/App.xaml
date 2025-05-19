@@ -14,6 +14,7 @@
         <mhrdt:MHDataTemplates/>
 
         <!-- Sample app -->
+        <ResourceDictionary Source="/Views/Controls/FolderTreeViewV.xaml"/>
         <ResourceDictionary Source="/Views/Layout/MiddleContentV.xaml"/>
       </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
