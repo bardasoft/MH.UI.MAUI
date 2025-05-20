@@ -2,15 +2,30 @@
 <ResourceDictionary
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  xmlns:c="clr-namespace:MH.UI.MAUI.Controls;assembly=MH.UI.MAUI">
+  xmlns:c="clr-namespace:MH.UI.MAUI.Controls;assembly=MH.UI.MAUI"
+  xmlns:mhbc="clr-namespace:MH.Utils.BaseClasses;assembly=MH.Utils"
+  xmlns:conv="clr-namespace:MH.UI.MAUI.Converters">
 
-  <DataTemplate x:Key="MH.DT.TreeViewItem">
+  <DataTemplate x:Key="MH.DT.FlatTreeItem" x:DataType="mhbc:FlatTreeItem">
     <ViewCell>
-      <Label Text="My TreeViewItem"/>
+      <Grid
+        Margin="{Binding Converter={x:Static conv:TreeMarginConverter.Inst}, ConverterParameter=16}"
+        ColumnDefinitions="40,*"
+        MinimumHeightRequest="25">
+
+        <Switch
+          IsToggled="{Binding TreeItem.IsExpanded, Mode=TwoWay}"
+          IsVisible="{Binding TreeItem.Items.Count, Converter={x:Static conv:VisibilityConverter.IntToVisible}}"/>
+
+        <Label
+          Grid.Column="1"
+          Text="{Binding TreeItem.Name}"
+          VerticalOptions="Center"/>
+      </Grid>
     </ViewCell>
   </DataTemplate>
 
   <Style TargetType="c:TreeViewHost">
-    <Setter Property="ItemTemplate" Value="{StaticResource MH.DT.TreeViewItem}"/>
+    <Setter Property="ItemTemplate" Value="{StaticResource MH.DT.FlatTreeItem}"/>
   </Style>
 </ResourceDictionary>
