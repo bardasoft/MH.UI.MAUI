@@ -7,22 +7,20 @@
   xmlns:conv="clr-namespace:MH.UI.MAUI.Converters">
 
   <DataTemplate x:Key="MH.DT.FlatTreeItem" x:DataType="mhbc:FlatTreeItem">
-    <ViewCell>
-      <Grid
-        Margin="{Binding Converter={x:Static conv:TreeMarginConverter.Inst}, ConverterParameter=16}"
-        ColumnDefinitions="40,*"
-        MinimumHeightRequest="25">
+    <Grid
+      Padding="{Binding Converter={x:Static conv:TreeMarginConverter.Inst}, ConverterParameter=16}"
+      ColumnDefinitions="40,*"
+      MinimumHeightRequest="25">
 
-        <Switch
-          IsToggled="{Binding TreeItem.IsExpanded, Mode=TwoWay}"
-          IsVisible="{Binding TreeItem.Items.Count, Converter={x:Static conv:VisibilityConverter.IntToVisible}}"/>
+      <Switch
+        IsToggled="{Binding TreeItem.IsExpanded, Mode=TwoWay}"
+        IsVisible="{Binding TreeItem.Items.Count, Converter={x:Static conv:VisibilityConverter.IntToVisible}}"/>
 
-        <Label
-          Grid.Column="1"
-          Text="{Binding TreeItem.Name}"
-          VerticalOptions="Center"/>
-      </Grid>
-    </ViewCell>
+      <c:TemplatedContentView
+        Grid.Column="1"
+        BindingContext="{Binding TreeItem}"
+        VerticalOptions="Center"/>
+    </Grid>
   </DataTemplate>
 
   <Style TargetType="c:TreeViewHost">
