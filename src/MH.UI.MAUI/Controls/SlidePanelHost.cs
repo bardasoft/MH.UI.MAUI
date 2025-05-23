@@ -27,7 +27,7 @@ public class SlidePanelHost : TemplatedView, ISlidePanelHost {
     host.ViewModel.Host = host;
   }
 
-  public event EventHandler<Utils.EventsArgs.SizeChangedEventArgs>? HostSizeChangedEvent;
+  public event EventHandler<MH.Utils.EventsArgs.SizeChangedEventArgs>? HostSizeChangedEvent;
 
   public SlidePanelHost() {
     SizeChanged += _onSizeChanged;
