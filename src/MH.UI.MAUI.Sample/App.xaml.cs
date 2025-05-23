@@ -10,8 +10,7 @@ public partial class App {
   public App() {
     InitializeComponent();
 
-    // TODO PORT
-    //MH.UI.MAUI.Utils.ColorHelper.AddColorsToResources();
+    MH.UI.MAUI.Utils.ColorHelper.AddColorsToResources(Resources);
 
     // TODO PORT
     var splashScreen = new SplashScreenV();
