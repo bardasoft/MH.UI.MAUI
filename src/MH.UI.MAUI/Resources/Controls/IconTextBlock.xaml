@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+  xmlns:c="clr-namespace:MH.UI.MAUI.Controls">
+
+  <!--TODO PORT shadow-->
+  <ControlTemplate x:Key="MH.CT.IconTextBlock">
+    <Frame
+      BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+      Background="{Binding Background}"
+      Padding="{Binding Padding}"
+      Margin="{Binding Margin}"
+      CornerRadius="5"
+      BorderColor="Black"
+      HasShadow="False">
+
+      <!--TODO PORT-->
+      <!--<VisualStateManager.VisualStateGroups>
+        <VisualStateGroupList>
+          <VisualStateGroup x:Name="CommonStates">
+            <VisualState x:Name="Normal"/>
+            <VisualState x:Name="Disabled">
+              <VisualState.Setters>
+                <Setter TargetName="icon" Property="Path.Fill" Value="{DynamicResource MH.B.C.Disabled.Fo}"/>
+                <Setter TargetName="text" Property="Label.TextColor" Value="{DynamicResource MH.B.C.Disabled.Fo}"/>
+              </VisualState.Setters>
+            </VisualState>
+          </VisualStateGroup>
+          <VisualStateGroup x:Name="LayoutStates">
+            <VisualState x:Name="Normal"/>
+            <VisualState x:Name="Compact">
+              <VisualState.StateTriggers>
+                <StateTrigger IsActive="{Binding Compact}"/>
+              </VisualState.StateTriggers>
+              <VisualState.Setters>
+                <Setter Property="HorizontalOptions" Value="Fill"/>
+                <Setter Property="VerticalOptions" Value="Fill"/>
+                <Setter TargetName="text" Property="Label.FontSize" Value="10"/>
+                <Setter TargetName="text" Property="Label.FontAttributes" Value="Bold"/>
+                <Setter TargetName="icon" Property="Margin" Value="2,2,0,0"/>
+                <Setter TargetName="icon" Property="HorizontalOptions" Value="Start"/>
+                <Setter TargetName="icon" Property="VerticalOptions" Value="Start"/>
+                <Setter TargetName="textBorder" Property="Grid.Column" Value="0"/>
+                <Setter TargetName="textBorder" Property="Margin" Value="0,0,2,-1"/>
+                <Setter TargetName="textBorder" Property="HorizontalOptions" Value="End"/>
+                <Setter TargetName="textBorder" Property="VerticalOptions" Value="End"/>
+                <Setter TargetName="grid" Property="Grid.ColumnDefinitions" Value="*,Auto"/>
+              </VisualState.Setters>
+            </VisualState>
+          </VisualStateGroup>
+        </VisualStateGroupList>
+      </VisualStateManager.VisualStateGroups>-->
+
+      <Grid x:Name="grid" ColumnDefinitions="Auto,*">
+        <Path
+          x:Name="icon"
+          Data="{Binding IconData}"
+          Fill="{Binding IconFill}"
+          WidthRequest="{Binding IconSize}"
+          HeightRequest="{Binding IconSize}"
+          Margin="2"
+          Aspect="Uniform"/>
+
+        <Frame
+          x:Name="textBorder"
+          Grid.Column="1"
+          Style="{Binding TextBorderStyle}"
+          HorizontalOptions="{Binding HorizontalOptions}"
+          VerticalOptions="{Binding VerticalOptions}">
+
+          <Label
+            x:Name="text"
+            Text="{Binding TextText}"
+            TextColor="{Binding TextColor}"/>
+        </Frame>
+
+        <Grid.Triggers>
+          <DataTrigger TargetType="Grid" Binding="{Binding IconData}" Value="{x:Null}">
+            <Setter TargetName="icon" Property="IsVisible" Value="False"/>
+          </DataTrigger>
+          <DataTrigger TargetType="Grid" Binding="{Binding TextText}" Value="{x:Null}">
+            <Setter TargetName="textBorder" Property="IsVisible" Value="False"/>
+          </DataTrigger>
+        </Grid.Triggers>
+      </Grid>
+    </Frame>
+  </ControlTemplate>
+
+  <Style TargetType="c:IconTextBlock">
+    <Setter Property="IsEnabled" Value="True"/>
+    <Setter Property="Margin" Value="1"/>
+    <Setter Property="Padding" Value="0"/>
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="TextColor" Value="{DynamicResource MH.B.C.Static.Fo}"/>
+    <Setter Property="HorizontalOptions" Value="Center"/>
+    <Setter Property="VerticalOptions" Value="Center"/>
+    <Setter Property="ShadowMode" Value="Both"/>
+    <Setter Property="IconFill" Value="{DynamicResource MH.B.White}"/>
+    <Setter Property="IconSize" Value="18"/>
+    <Setter Property="ControlTemplate" Value="{StaticResource MH.CT.IconTextBlock}"/>
+  </Style>
+
+  <!--TODO PORT-->
+  <!--<Style x:Key="MH.S.IconTextBlock.Borders.RoundDark" TargetType="c:IconTextBlock" BasedOn="{StaticResource MH.S.IconTextBlock}">
+    <Setter Property="BorderColor" Value="{DynamicResource MH.B.Black5}"/>
+    <Setter Property="Padding" Value="1"/>
+    <Setter Property="TextBorderStyle" Value="{DynamicResource MH.S.Border.RoundDark}"/>
+  </Style>-->
+</ResourceDictionary>

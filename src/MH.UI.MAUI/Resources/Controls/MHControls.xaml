@@ -6,6 +6,7 @@
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="FlatTreeItemHost.xaml"/>
     <ResourceDictionary Source="GridSplitter.xaml"/>
+    <ResourceDictionary Source="IconTextBlock.xaml"/>
     <ResourceDictionary Source="SlidePanelHost.xaml"/>
     <ResourceDictionary Source="SlidePanelsGridHost.xaml"/>
     <ResourceDictionary Source="TreeViewHost.xaml"/>
