@@ -1,4 +1,6 @@
-﻿using Microsoft.Maui.Controls;
+﻿using MH.UI.MAUI.Converters;
+using MH.UI.MAUI.Resources;
+using Microsoft.Maui.Controls;
 using Microsoft.Maui.Controls.Shapes;
 using Microsoft.Maui.Graphics;
 
@@ -19,7 +21,8 @@ public class IconTextBlock : TemplatedView {
   public static readonly BindableProperty IconFillProperty =
     BindableProperty.Create(nameof(IconFill), typeof(Brush), typeof(IconTextBlock));
   public static readonly BindableProperty IconResProperty =
-    BindableProperty.Create(nameof(IconRes), typeof(string), typeof(IconTextBlock));
+    BindableProperty.Create(nameof(IconRes), typeof(string), typeof(IconTextBlock), propertyChanged: _onIconResChanged);
+
   public static readonly BindableProperty IconSizeProperty =
     BindableProperty.Create(nameof(IconSize), typeof(double), typeof(IconTextBlock), 0.0);
   
@@ -32,11 +35,17 @@ public class IconTextBlock : TemplatedView {
   public Style TextBorderStyle { get => (Style)GetValue(TextBorderStyleProperty); set => SetValue(TextBorderStyleProperty, value); }
   public IconTextBlockShadow ShadowMode { get => (IconTextBlockShadow)GetValue(ShadowModeProperty); set => SetValue(ShadowModeProperty, value); }
   
-  public PathGeometry IconData { get => (PathGeometry)GetValue(IconDataProperty); set => SetValue(IconDataProperty, value); }
+  public PathGeometry? IconData { get => (PathGeometry?)GetValue(IconDataProperty); set => SetValue(IconDataProperty, value); }
   public Brush IconFill { get => (Brush)GetValue(IconFillProperty); set => SetValue(IconFillProperty, value); }
   public string IconRes { get => (string)GetValue(IconResProperty); set => SetValue(IconResProperty, value); }
   public double IconSize { get => (double)GetValue(IconSizeProperty); set => SetValue(IconSizeProperty, value); }
   
   public string TextText { get => (string)GetValue(TextTextProperty); set => SetValue(TextTextProperty, value); }
   public Color TextColor { get => (Color)GetValue(TextColorProperty); set => SetValue(TextColorProperty, value); }
+
+  private static void _onIconResChanged(BindableObject o, object oldValue, object newValue) {
+    if (o is not IconTextBlock self || string.IsNullOrEmpty(newValue as string)) return;
+    self.IconData = ResourceConverter.Inst.Convert(newValue, null) as PathGeometry;
+    self.IconFill = ResourceConverter.Inst.Convert(newValue, Dictionaries.IconToBrush) as Brush ?? self.IconFill;
+  }
 }
