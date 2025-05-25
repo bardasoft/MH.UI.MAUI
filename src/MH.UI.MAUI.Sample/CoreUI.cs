@@ -1,6 +1,6 @@
 ﻿using MH.UI.MAUI.Controls;
-using MH.UI.MAUI.Sample.ViewModels.Controls;
-using MH.UI.MAUI.Sample.ViewModels.Layout;
+using MH.UI.Sample.Features.Controls;
+using MH.UI.Sample.Layout;
 using MH.Utils.Interfaces;
 
 namespace MH.UI.MAUI.Sample;

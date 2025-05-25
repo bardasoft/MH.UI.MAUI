@@ -1,4 +1,5 @@
 ﻿using MH.UI.MAUI.Sample.Views;
+using MH.UI.Sample;
 using System.Threading.Tasks;
 
 namespace MH.UI.MAUI.Sample;
@@ -17,14 +18,12 @@ public partial class App {
     var mainPage = new MainPage();
     MainPage = mainPage;
 
-    Task.Run(() => {
-      Core.Inst.InitAsync(splashScreen.ProgressMessage).ContinueWith(_ => {
-        Core = Core.Inst;
-        CoreUI = new();
-        Core.AfterInit();
-        mainPage.BindingContext = Core.VM.MainWindow;
-        //MainPage = new MainPage(); // changing MainPage doesn't work well
-      });
+    Core.Inst.InitAsync(splashScreen.ProgressMessage).ContinueWith(_ => {
+      Core = Core.Inst;
+      CoreUI = new();
+      Core.AfterInit();
+      mainPage.BindingContext = Core.VM.MainWindow;
+      //MainPage = new MainPage(); // changing MainPage doesn't work well
     });
   }
 }

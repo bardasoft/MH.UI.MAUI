@@ -29,6 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\MH.UI\src\MH.UI.Sample\MH.UI.Sample.csproj" />
     <ProjectReference Include="..\MH.UI.MAUI\MH.UI.MAUI.csproj" />
   </ItemGroup>
 

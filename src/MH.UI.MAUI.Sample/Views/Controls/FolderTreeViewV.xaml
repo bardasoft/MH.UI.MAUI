@@ -2,10 +2,10 @@
 <ResourceDictionary
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  xmlns:svmc="clr-namespace:MH.UI.MAUI.Sample.ViewModels.Controls"
+  xmlns:fc="clr-namespace:MH.UI.Sample.Features.Controls;assembly=MH.UI.Sample"
   xmlns:mhc="clr-namespace:MH.UI.MAUI.Controls;assembly=MH.UI.MAUI">
 
-  <DataTemplate x:Key="S.DT.Views.Controls.FolderTreeViewV" x:DataType="svmc:FolderTreeViewVM">
+  <DataTemplate x:Key="S.DT.Views.Controls.FolderTreeViewV" x:DataType="fc:FolderTreeViewVM">
     <mhc:TreeViewHost ViewModel="{Binding}"/>
   </DataTemplate>
 </ResourceDictionary>
