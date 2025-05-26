@@ -24,6 +24,8 @@
   <Color x:Key="MH.Color.Gray8">#D8D8D8</Color>
   <Color x:Key="MH.Color.Gray9">#EEEEEE</Color>
 
+  <Color x:Key="MH.Color.Text">#EEEEEE</Color>
+
   <SolidColorBrush x:Key="MH.B.Gray1" Color="{StaticResource MH.Color.Gray1}"/>
   <SolidColorBrush x:Key="MH.B.Gray2" Color="{StaticResource MH.Color.Gray2}"/>
   <SolidColorBrush x:Key="MH.B.Gray3" Color="{StaticResource MH.Color.Gray3}"/>
