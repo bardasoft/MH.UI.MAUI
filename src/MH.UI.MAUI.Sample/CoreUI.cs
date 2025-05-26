@@ -17,4 +17,9 @@ public class CoreUI {
 
     // TODO PORT
   }
+
+  public void AfterInit() {
+    // TODO remove this later
+    MH.UI.Sample.Core.VM.MainWindow.SlidePanelsGrid.PanelRight!.IsPinned = true;
+  }
 }

@@ -22,6 +22,7 @@ public partial class App {
       Core = Core.Inst;
       CoreUI = new();
       Core.AfterInit();
+      CoreUI.AfterInit();
       mainPage.BindingContext = Core.VM.MainWindow;
       //MainPage = new MainPage(); // changing MainPage doesn't work well
     });
