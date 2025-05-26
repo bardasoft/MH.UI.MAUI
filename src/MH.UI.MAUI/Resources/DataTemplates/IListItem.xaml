@@ -2,9 +2,37 @@
 <ResourceDictionary
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-  xmlns:mhuInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils">
+  xmlns:mhuInt="clr-namespace:MH.Utils.Interfaces;assembly=MH.Utils"
+  xmlns:c="clr-namespace:MH.UI.MAUI.Controls"
+  xmlns:conv="clr-namespace:MH.UI.MAUI.Converters"
+  xmlns:res="clr-namespace:MH.UI.MAUI.Resources">
 
   <DataTemplate x:Key="MH.DT.IListItem" x:DataType="mhuInt:IListItem">
-    <Label Text="{Binding Name}"/>
+    <Grid x:Name="grid" ColumnDefinitions="Auto,*">
+      <Path
+        x:Name="icon"
+        Data="{Binding Icon, Converter={x:Static conv:ResourceConverter.Inst}}"
+        Fill="{Binding Icon, Converter={x:Static conv:ResourceConverter.Inst},
+               ConverterParameter={x:Static res:Dictionaries.IconToBrush}}"
+        WidthRequest="18"
+        HeightRequest="18"
+        Margin="2"
+        Aspect="Uniform"/>
+
+      <Label
+        x:Name="text"
+        Grid.Column="1"
+        Text="{Binding Name}"
+        TextColor="{DynamicResource MH.Color.Text}"
+        Margin="2"/>
+    </Grid>
+
+    <!--<Label Text="{Binding Name}"/>-->
+
+    <!--<c:IconTextBlock
+      TextText="{Binding Name}"
+      IconData="{Binding Icon, Converter={x:Static conv:ResourceConverter.Inst}}"
+      IconFill="{Binding Icon, Converter={x:Static conv:ResourceConverter.Inst},
+                 ConverterParameter={x:Static res:Dictionaries.IconToBrush}}"/>-->
   </DataTemplate>
 </ResourceDictionary>
