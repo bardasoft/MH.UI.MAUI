@@ -6,11 +6,11 @@
 		<TargetPlatformMinVersion>10.0.17763.0</TargetPlatformMinVersion>
     <RootNamespace>MH.UI.MAUI.Sample.WinUI</RootNamespace>
 		<ApplicationManifest>app.manifest</ApplicationManifest>
-		<Platforms>x86;x64;ARM64</Platforms>
-		<RuntimeIdentifiers>win10-x86;win10-x64;win10-arm64</RuntimeIdentifiers>
+		<Platforms>x64</Platforms>
+		<RuntimeIdentifiers>win10-x64</RuntimeIdentifiers>
 		<PublishProfile>win10-$(Platform).pubxml</PublishProfile>
 		<UseWinUI>true</UseWinUI>
-		<EnableMsixTooling>true</EnableMsixTooling>
+    <DisableMsixProjectCapabilityAddedByProject>true</DisableMsixProjectCapabilityAddedByProject> <!-- Disable Appx -->
 		<Nullable>enable</Nullable>
 		<UseMaui>true</UseMaui>
 		<!-- We do not want XAML files to be processed as .NET MAUI XAML, but rather WinUI XAML. -->
@@ -39,23 +39,5 @@
 	<ItemGroup>
 		<Manifest Include="$(ApplicationManifest)" />
 	</ItemGroup>
-
-	<!--
-		Defining the "Msix" ProjectCapability here allows the Single-project MSIX Packaging
-		Tools extension to be activated for this project even if the Windows App SDK Nuget
-		package has not yet been restored.
-	-->
-	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
-		<ProjectCapability Include="Msix" />
-	</ItemGroup>
-
-	<!--
-		Defining the "HasPackageAndPublishMenuAddedByProject" property here allows the Solution
-		Explorer "Package and Publish" context menu entry to be enabled for this project even if
-		the Windows App SDK Nuget package has not yet been restored.
-	-->
-	<PropertyGroup Condition="'$(DisableHasPackageAndPublishMenuAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
-		<HasPackageAndPublishMenu>true</HasPackageAndPublishMenu>
-	</PropertyGroup>
 
 </Project>
