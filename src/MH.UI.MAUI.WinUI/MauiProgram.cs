@@ -6,6 +6,7 @@ namespace MH.UI.MAUI.WinUI;
 
 public static class MauiProgram{
   public static void ConfigureHandlers(IMauiHandlersCollection handlers)  {
-    handlers.AddHandler<VirtualizedItemsView, VirtualizedItemsViewHandler>();
+    //handlers.AddHandler<VirtualizedItemsView, VirtualizedItemsViewHandler>();
+    //handlers.AddHandler<FlatTreeItemHost, FlatTreeItemHostHandler>();
   }
 }
