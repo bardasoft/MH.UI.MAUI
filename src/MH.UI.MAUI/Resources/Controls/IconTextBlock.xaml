@@ -6,14 +6,12 @@
 
   <!--TODO PORT shadow-->
   <ControlTemplate x:Key="MH.CT.IconTextBlock">
-    <Frame
+    <Border
+      x:Name="rootBorder"
       BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
       Background="{Binding Background}"
       Padding="{Binding Padding}"
-      Margin="{Binding Margin}"
-      CornerRadius="5"
-      BorderColor="Black"
-      HasShadow="False">
+      Margin="{Binding Margin}">
 
       <!--TODO PORT-->
       <!--<VisualStateManager.VisualStateGroups>
@@ -62,7 +60,7 @@
           Margin="2"
           Aspect="Uniform"/>
 
-        <Frame
+        <Border
           x:Name="textBorder"
           Grid.Column="1"
           Style="{Binding TextBorderStyle}"
@@ -73,7 +71,7 @@
             x:Name="text"
             Text="{Binding TextText}"
             TextColor="{Binding TextColor}"/>
-        </Frame>
+        </Border>
 
         <Grid.Triggers>
           <DataTrigger TargetType="Grid" Binding="{Binding IconData}" Value="{x:Null}">
@@ -84,7 +82,7 @@
           </DataTrigger>
         </Grid.Triggers>
       </Grid>
-    </Frame>
+    </Border>
   </ControlTemplate>
 
   <Style TargetType="c:IconTextBlock">
@@ -92,7 +90,7 @@
     <Setter Property="Margin" Value="1"/>
     <Setter Property="Padding" Value="0"/>
     <Setter Property="Background" Value="Transparent"/>
-    <Setter Property="TextColor" Value="{DynamicResource MH.B.C.Static.Fo}"/>
+    <Setter Property="TextColor" Value="{DynamicResource MH.Color.Text}"/>
     <Setter Property="HorizontalOptions" Value="Center"/>
     <Setter Property="VerticalOptions" Value="Center"/>
     <Setter Property="ShadowMode" Value="Both"/>
