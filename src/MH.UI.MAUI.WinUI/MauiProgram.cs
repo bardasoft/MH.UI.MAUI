@@ -8,5 +8,6 @@ public static class MauiProgram{
   public static void ConfigureHandlers(IMauiHandlersCollection handlers)  {
     //handlers.AddHandler<VirtualizedItemsView, VirtualizedItemsViewHandler>();
     //handlers.AddHandler<FlatTreeItemHost, FlatTreeItemHostHandler>();
+    handlers.AddHandler<TreeViewHost, TreeViewHostHandler>();
   }
 }
