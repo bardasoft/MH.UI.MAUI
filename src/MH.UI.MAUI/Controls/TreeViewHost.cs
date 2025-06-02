@@ -12,7 +12,7 @@ using UIC = MH.UI.Controls;
 
 namespace MH.UI.MAUI.Controls;
 
-public class TreeViewHost : CollectionView, UIC.ITreeViewHost {
+public class TreeViewHost : ItemsView, UIC.ITreeViewHost {
   public static readonly BindableProperty ViewModelProperty =
     BindableProperty.Create(nameof(ViewModel), typeof(UIC.TreeView), typeof(TreeViewHost), propertyChanged: _onViewModelChanged);
   public static readonly BindableProperty InnerContentTemplateProperty =
