@@ -5,9 +5,16 @@
 
   <DataTemplate x:Key="MH.DT.FlatTreeItem">
     <Grid Height="48">
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
+        <ColumnDefinition Width="*"/>
+      </Grid.ColumnDefinitions>
+
+      <ToggleSwitch IsOn="{Binding TreeItem.IsExpanded, Mode=TwoWay}"/>
       <TextBlock
-        Text="Hello from FlatTreeItemHost"
-        Foreground="Red"
+        Grid.Column="1"
+        Text="{Binding TreeItem.Name}"
+        Foreground="White"
         VerticalAlignment="Center"/>
     </Grid>
   </DataTemplate>
