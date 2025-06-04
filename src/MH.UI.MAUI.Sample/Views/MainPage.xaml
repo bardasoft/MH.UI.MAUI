@@ -7,8 +7,10 @@
   x:Class="MH.UI.MAUI.Sample.Views.MainPage"
   x:DataType="layout:MainWindowVM">
 
-  <!--<mhc:VirtualizedItemsView ItemsSource="{Binding ImagePaths}"/>-->
+  <!--<mhc:VirtualizedItemsView ItemsSource="{Binding RightContent.FolderTreeView.RootHolder}"/>-->
+  
+  <mhc:TreeViewHost ViewModel="{Binding RightContent.FolderTreeView}"/>
 
-  <mhc:SlidePanelsGridHost ViewModel="{Binding SlidePanelsGrid}"/>
+  <!--<mhc:SlidePanelsGridHost ViewModel="{Binding SlidePanelsGrid}"/>-->
 
 </ContentPage>
