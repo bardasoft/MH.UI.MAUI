@@ -4,15 +4,16 @@
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:maui="using:Microsoft.Maui"
-  xmlns:sdt="using:MH.UI.MAUI.Sample.WinUI.Resources.DataTemplates">
+  xmlns:sdt="using:MH.UI.MAUI.Sample.WinUI.Resources.DataTemplates"
+  xmlns:mhdt="using:MH.UI.MAUI.WinUI.Resources.DataTemplates">
   
   <maui:MauiWinUIApplication.Resources>
     <ResourceDictionary>
       <ResourceDictionary.MergedDictionaries>
         <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls"/>
         
-        <!--<ResourceDictionary Source="/MH.UI.MAUI.WinUI/Resources/DataTemplates/FlatTreeItem.xaml" />-->
-        <sdt:FlatTreeItem/>
+        <!--<sdt:FlatTreeItem/>-->
+        <mhdt:FlatTreeItem/>
       </ResourceDictionary.MergedDictionaries>
       
       <!-- Other app resources here -->
