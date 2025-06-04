@@ -14,5 +14,13 @@
     <ProjectReference Include="..\..\..\MH.Utils\src\MH.Utils\MH.Utils.csproj" />
     <ProjectReference Include="..\MH.UI.MAUI\MH.UI.MAUI.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <MauiXaml Remove="Resources\DataTemplates\FlatTreeItem.xaml" />
+      
+    <Page Update="Resources\DataTemplates\FlatTreeItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
   
 </Project>

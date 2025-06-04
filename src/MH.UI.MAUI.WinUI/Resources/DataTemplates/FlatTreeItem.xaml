@@ -1,23 +1,70 @@
-<ResourceDictionary
+﻿<ResourceDictionary
+  x:Class="MH.UI.MAUI.WinUI.Resources.DataTemplates.FlatTreeItem"
   xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:conv="using:MH.UI.MAUI.WinUI.Converters">
   
   <conv:TreeMarginConverter x:Key="TreeMarginConverter"/>
+  
+  <PathGeometry x:Key="IconFolder">
+    <PathFigure StartPoint="21,30">
+      <LineSegment Point="56,30" />
+      <LineSegment Point="56,50" />
+      <LineSegment Point="21,50" />
+      <LineSegment Point="21,30" />
+    </PathFigure>
+    <PathFigure StartPoint="52,28">
+      <LineSegment Point="37,28" />
+      <LineSegment Point="39.5,24" />
+      <LineSegment Point="50.75,24" />
+      <LineSegment Point="52,25.25" />
+      <LineSegment Point="52,28" />
+    </PathFigure>
+  </PathGeometry>
+  
+  <SolidColorBrush Color="#FFF9DA77" x:Key="ColorBrushFolder" />
 
   <DataTemplate x:Key="MH.DT.FlatTreeItem">
-    <Grid Margin="{Binding Converter={StaticResource TreeMarginConverter}, ConverterParameter=16}" Height="48">
+    <Grid Margin="{Binding Converter={StaticResource TreeMarginConverter}, ConverterParameter=16}" Height="48">      
       <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="Auto"/>
         <ColumnDefinition Width="*"/>
       </Grid.ColumnDefinitions>
 
       <ToggleSwitch IsOn="{Binding TreeItem.IsExpanded, Mode=TwoWay}"/>
-      <TextBlock
+      
+      <Path
         Grid.Column="1"
+        Fill="{StaticResource ColorBrushFolder}"
+        Width="18"
+        Height="18"
+        Stretch="Uniform">
+        <Path.Data><!--using geometry from resources doesn't work--> 
+          <PathGeometry>
+            <PathFigure StartPoint="21,30">
+              <LineSegment Point="56,30" />
+              <LineSegment Point="56,50" />
+              <LineSegment Point="21,50" />
+              <LineSegment Point="21,30" />
+            </PathFigure>
+            <PathFigure StartPoint="52,28">
+              <LineSegment Point="37,28" />
+              <LineSegment Point="39.5,24" />
+              <LineSegment Point="50.75,24" />
+              <LineSegment Point="52,25.25" />
+              <LineSegment Point="52,28" />
+            </PathFigure>
+          </PathGeometry>
+        </Path.Data>
+      </Path>
+
+      <TextBlock
+        Grid.Column="2"
         Text="{Binding TreeItem.Name}"
         Foreground="White"
-        VerticalAlignment="Center"/>
+        VerticalAlignment="Center"
+        HorizontalAlignment="Left"/>
     </Grid>
   </DataTemplate>
 </ResourceDictionary>
