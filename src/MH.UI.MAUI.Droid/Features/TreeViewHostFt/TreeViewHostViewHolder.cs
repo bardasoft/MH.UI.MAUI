@@ -1,14 +1,17 @@
 ﻿using Android.Views;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
+using MH.UI.MAUI.Droid.Utils;
 using MH.Utils.BaseClasses;
+using System.Collections.Generic;
 
 namespace MH.UI.MAUI.Droid.Features.TreeViewHostFt;
 
 public class TreeViewHostViewHolder(View itemView) : RecyclerView.ViewHolder(itemView) {
-  private readonly LinearLayout _container = (LinearLayout)itemView;
-  private readonly TextView _nameTextView = itemView.FindViewById<TextView>(Resource.Id.name_text_view)!;
+  private readonly LinearLayout _container = (LinearLayout)itemView;  
   private readonly CheckBox _expandCheckBox = itemView.FindViewById<CheckBox>(Resource.Id.expand_checkbox)!;
+  private readonly ImageView _iconImageView = itemView.FindViewById<ImageView>(Resource.Id.icon_image_view)!;
+  private readonly TextView _nameTextView = itemView.FindViewById<TextView>(Resource.Id.name_text_view)!;
 
   public FlatTreeItem? Item { get; private set; }
 
@@ -19,11 +22,15 @@ public class TreeViewHostViewHolder(View itemView) : RecyclerView.ViewHolder(ite
     int indent = item.Level * 16;
     _container.SetPadding(indent, _container.PaddingTop, _container.PaddingRight, _container.PaddingBottom);
 
-    _nameTextView.Text = item.TreeItem.Name;
-
     _expandCheckBox.Checked = item.TreeItem.IsExpanded;
     _expandCheckBox.CheckedChange -= _onExpandedChanged; // Prevent multiple handlers
     _expandCheckBox.CheckedChange += _onExpandedChanged;
+
+    var iconToColor = new Dictionary<string, string>() { { "default", "#7896f4" }, { "IconFolder", "#FFF9DA77" } };
+
+    _iconImageView.SetImageDrawable(Icons.GetIcon(_container.Context, item.TreeItem.Icon, iconToColor));
+
+    _nameTextView.Text = item.TreeItem.Name;
   }
 
   private void _onExpandedChanged(object? sender, CompoundButton.CheckedChangeEventArgs e) {
