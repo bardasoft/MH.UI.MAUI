@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:a="http://schemas.android.com/apk/res/android"
+  a:layout_width="match_parent"
+  a:layout_height="wrap_content"
+  a:orientation="horizontal"
+  a:padding="16dp">
+  
+  <CheckBox
+    a:id="@+id/expand_checkbox"
+    a:layout_width="wrap_content"
+    a:layout_height="wrap_content"
+    a:layout_marginStart="8dp"/>
+  
+  <TextView
+    a:id="@+id/name_text_view"
+    a:layout_width="wrap_content"
+    a:layout_height="wrap_content"
+    a:layout_marginStart="8dp"
+    a:textColor="#000000"/>
+</LinearLayout>
