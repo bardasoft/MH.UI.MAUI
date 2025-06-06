@@ -3,7 +3,6 @@ using Android.Widget;
 using AndroidX.RecyclerView.Widget;
 using MH.UI.MAUI.Droid.Utils;
 using MH.Utils.BaseClasses;
-using System.Collections.Generic;
 
 namespace MH.UI.MAUI.Droid.Features.TreeViewHostFt;
 
@@ -26,9 +25,7 @@ public class TreeViewHostViewHolder(View itemView) : RecyclerView.ViewHolder(ite
     _expandCheckBox.CheckedChange -= _onExpandedChanged; // Prevent multiple handlers
     _expandCheckBox.CheckedChange += _onExpandedChanged;
 
-    var iconToColor = new Dictionary<string, string>() { { "default", "#7896f4" }, { "IconFolder", "#FFF9DA77" } };
-
-    _iconImageView.SetImageDrawable(Icons.GetIcon(_container.Context, item.TreeItem.Icon, iconToColor));
+    _iconImageView.SetImageDrawable(Icons.GetIcon(_container.Context, item.TreeItem.Icon));
 
     _nameTextView.Text = item.TreeItem.Name;
   }
