@@ -1,4 +1,4 @@
-﻿using MH.UI.MAUI.Sample.Resources;
+﻿using MH.UI.Sample.Resources;
 using System.Collections.Generic;
 
 namespace MH.UI.MAUI.Sample.Droid.Resources;

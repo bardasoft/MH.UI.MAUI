@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MH.UI.Sample.Resources;
+using System.Collections.Generic;
 
 namespace MH.UI.MAUI.Sample.Resources;
 
