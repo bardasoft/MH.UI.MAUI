@@ -18,7 +18,7 @@ public class TreeViewHostViewHolder(View itemView) : RecyclerView.ViewHolder(ite
     Item = item;
     if (item == null) return;
 
-    int indent = item.Level * 16;
+    int indent = item.Level * _container.Resources?.GetDimensionPixelSize(Resource.Dimension.flat_tree_item_indent_size) ?? 32;
     _container.SetPadding(indent, _container.PaddingTop, _container.PaddingRight, _container.PaddingBottom);
 
     _expandCheckBox.Checked = item.TreeItem.IsExpanded;

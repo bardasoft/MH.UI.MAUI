@@ -16,7 +16,7 @@
     a:id="@+id/icon_image_view"
     a:layout_width="24dp"
     a:layout_height="24dp"
-    a:layout_marginStart="8dp" />
+    a:layout_marginStart="8dp"/>
   
   <TextView
     a:id="@+id/name_text_view"
