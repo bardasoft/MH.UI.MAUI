@@ -15,8 +15,6 @@ public class CoreUI {
         new(typeof(RightContentVM), "S.DT.Views.Layout.RightContentV")
       ]);
 
-    MH.UI.MAUI.Resources.Dictionaries.IconToBrush = MAUI.Sample.Resources.Res.IconToBrushDic;
-
     // TODO PORT
   }
 

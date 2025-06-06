@@ -10,6 +10,9 @@ public static class MauiProgram {
       .UseSharedMauiApp()
       .ConfigureMauiHandlers(MAUI.WinUI.MauiProgram.ConfigureHandlers);
 
+    // TODO move IconToBrushDic to Sample.WinUI
+    MH.UI.MAUI.Resources.Dictionaries.IconToBrush = MH.UI.MAUI.Sample.Resources.Res.IconToBrushDic;
+
     return builder.Build();
   }
 }
