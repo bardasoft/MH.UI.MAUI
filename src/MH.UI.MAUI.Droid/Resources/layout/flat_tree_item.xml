@@ -4,24 +4,32 @@
   a:layout_width="match_parent"
   a:layout_height="wrap_content"
   a:orientation="horizontal"
-  a:padding="16dp">
+  a:padding="4dp"
+  a:gravity="center_vertical">
   
-  <CheckBox
-    a:id="@+id/expand_checkbox"
-    a:layout_width="wrap_content"
-    a:layout_height="wrap_content"
-    a:layout_marginStart="8dp"/>
+  <ImageView
+    a:id="@+id/expanded_icon"
+    a:layout_width="32dp"
+    a:layout_height="32dp"
+    a:layout_marginStart="4dp"
+    a:layout_gravity="center_vertical"
+    a:src="@drawable/tree_item_expanded_selector"
+    a:clickable="true"
+    a:focusable="true"
+    a:scaleType="center"/>
 
   <ImageView
-    a:id="@+id/icon_image_view"
+    a:id="@+id/icon"
     a:layout_width="24dp"
     a:layout_height="24dp"
-    a:layout_marginStart="8dp"/>
+    a:layout_marginStart="8dp"
+    a:layout_gravity="center_vertical"/>
   
   <TextView
-    a:id="@+id/name_text_view"
+    a:id="@+id/name"
     a:layout_width="wrap_content"
     a:layout_height="wrap_content"
     a:layout_marginStart="8dp"
-    a:textColor="#000000"/>
+    a:textColor="@android:color/white"
+    a:layout_gravity="center_vertical"/>
 </LinearLayout>
