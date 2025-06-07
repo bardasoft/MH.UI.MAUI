@@ -20,6 +20,7 @@ public class TreeViewHostHandler : ViewHandler<TreeViewHost, RecyclerView> {
   protected override RecyclerView CreatePlatformView() {
     var recyclerView = new RecyclerView(Context);
     recyclerView.SetLayoutManager(new LinearLayoutManager(Context));
+    recyclerView.SetBackgroundResource(Resource.Color.color_c_static_ba); // TODO define this elsewhere
     return recyclerView;
   }
 
