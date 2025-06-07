@@ -3,9 +3,9 @@
   xmlns:a="http://schemas.android.com/apk/res/android"
   a:width="24dp"
   a:height="24dp"
-  a:viewportWidth="56"
-  a:viewportHeight="50">
+  a:viewportWidth="48"
+  a:viewportHeight="48">
   <path
-    a:pathData="M 21,30.0001L 55.9999,30.0001L 55.9999,50L 21,50L 21,30.0001 Z M 52,28L 37,28C 38,25 39.4999,24.0001 39.4999,24.0001L 50.75,24C 51.3023,24 52,24.6977 52,25.25L 52,28 Z"
+    a:pathData="M0 14.4h48v27.43H0zm42.514-2.743H21.943c1.371-4.114 3.428-5.485 3.428-5.485h15.43c.757 0 1.713.956 1.713 1.714z"
     a:fillColor="#FFFFFF"/>
 </vector>
