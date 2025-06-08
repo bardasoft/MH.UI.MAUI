@@ -26,7 +26,7 @@ public class TreeViewHostHandler : ViewHandler<TreeViewHost, RecyclerView> {
 
   protected override void ConnectHandler(RecyclerView platformView) {
     base.ConnectHandler(platformView);
-    _adapter = new(Context, VirtualView.ItemsSource);
+    _adapter = new(Context);
     PlatformView.SetAdapter(_adapter);
   }
 
