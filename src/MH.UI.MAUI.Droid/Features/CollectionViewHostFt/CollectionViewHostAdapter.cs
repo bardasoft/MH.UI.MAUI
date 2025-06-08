@@ -9,15 +9,10 @@ using System.Linq;
 
 namespace MH.UI.MAUI.Droid.Features.CollectionViewHostFt;
 
-public class CollectionViewHostAdapter : RecyclerView.Adapter {
-  private readonly Context _context;
+public class CollectionViewHostAdapter(Context context) : RecyclerView.Adapter {
+  private readonly Context _context = context;
   private object[] _items;
   private readonly Handler _handler = new(Looper.MainLooper);
-
-  public CollectionViewHostAdapter(Context context, IEnumerable items) {
-    _context = context;
-    _items = [.. items.Cast<object>()];
-  }
 
   public override int ItemCount => _items.Length;
 
