@@ -21,6 +21,7 @@ public class TreeViewHostViewHolder(View itemView) : RecyclerView.ViewHolder(ite
     int indent = item.Level * _container.Resources?.GetDimensionPixelSize(Resource.Dimension.flat_tree_item_indent_size) ?? 32;
     _container.SetPadding(indent, _container.PaddingTop, _container.PaddingRight, _container.PaddingBottom);
 
+    _expandedIcon.Visibility = item.TreeItem.Items.Count > 0 ? ViewStates.Visible : ViewStates.Invisible;
     _expandedIcon.Selected = item.TreeItem.IsExpanded;
     _expandedIcon.Click -= _onExpandedChanged; // Prevent multiple handlers
     _expandedIcon.Click += _onExpandedChanged;
@@ -33,6 +34,5 @@ public class TreeViewHostViewHolder(View itemView) : RecyclerView.ViewHolder(ite
   private void _onExpandedChanged(object? sender, System.EventArgs e) {
     if (Item == null) return;
     Item.TreeItem.IsExpanded = !Item.TreeItem.IsExpanded;
-    _expandedIcon.Selected = Item.TreeItem.IsExpanded;
   }
 }
