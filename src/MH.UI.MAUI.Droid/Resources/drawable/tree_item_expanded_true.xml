@@ -4,5 +4,5 @@
   a:height="14dp"
   a:viewportWidth="14"
   a:viewportHeight="14">
-  <path a:pathData="M2,12 L12,12 L12,2 z" a:fillColor="@android:color/white"/>
+  <path a:pathData="M2,12 L12,12 L12,2 z" a:fillColor="@color/color_c_static_fo"/>
 </vector>

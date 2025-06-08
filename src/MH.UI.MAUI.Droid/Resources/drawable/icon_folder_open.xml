@@ -7,5 +7,5 @@
   a:viewportHeight="48">
   <path
     a:pathData="m0 38.183 9.818-17.455H48l-9.818 17.455zm0-24h17.455c1.09-3.275 2.726-4.366 2.726-4.366h12.274c.601 0 1.362.762 1.362 1.365v3.001h4.365v4.362H8.727L0 34.255Z"
-    a:fillColor="#FFFFFF"/>
+    a:fillColor="@color/color_icon_default"/>
 </vector>
