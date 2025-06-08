@@ -24,14 +24,18 @@ public class TreeViewHost : ItemsView, UIC.ITreeViewHost {
   private static void _onViewModelChanged(BindableObject o, object oldValue, object newValue) {
     if (o is not TreeViewHost { ViewModel: not null } host) return;
     host.ViewModel.Host = host;
-    host._setItemsSource();
-    if (newValue is UIC.TreeView newTreeView)
-      newTreeView.RootHolder.CollectionChanged += host._onRootHolderChanged;
-    if (oldValue is UIC.TreeView oldTreeView)
-      oldTreeView.RootHolder.CollectionChanged -= host._onRootHolderChanged;
+    host._onViewModelChanged(oldValue, newValue);
   }
 
   public event EventHandler<bool>? HostIsVisibleChangedEvent;
+
+  internal void _onViewModelChanged(object oldValue, object newValue) {
+    _setItemsSource();
+    if (newValue is UIC.TreeView newTreeView)
+      newTreeView.RootHolder.CollectionChanged += _onRootHolderChanged;
+    if (oldValue is UIC.TreeView oldTreeView)
+      oldTreeView.RootHolder.CollectionChanged -= _onRootHolderChanged;
+  }
 
   private void _setItemsSource() {
     if (ViewModel == null) return;
