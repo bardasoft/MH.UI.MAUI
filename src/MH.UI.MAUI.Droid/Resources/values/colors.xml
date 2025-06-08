@@ -11,4 +11,7 @@
   <color name="color_gray9">#EEEEEE</color>
   
   <color name="color_c_static_ba">#252525</color>
+  <color name="color_c_static_fo">#EEEEEE</color>
+  
+  <color name="color_icon_default">#EEEEEE</color>
 </resources>
