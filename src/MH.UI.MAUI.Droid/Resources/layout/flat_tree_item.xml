@@ -30,6 +30,6 @@
     a:layout_width="wrap_content"
     a:layout_height="wrap_content"
     a:layout_marginStart="8dp"
-    a:textColor="@color/color_c_static_fo"
+    a:textColor="@color/c_static_fo"
     a:layout_gravity="center_vertical"/>
 </LinearLayout>

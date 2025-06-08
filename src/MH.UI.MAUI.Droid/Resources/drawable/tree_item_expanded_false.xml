@@ -6,6 +6,6 @@
   a:viewportHeight="14">
   <path
     a:pathData="M4.048 1.323v11.354L9.726 7Z"
-    a:strokeColor="@color/color_c_static_fo"
+    a:strokeColor="@color/c_static_fo"
     a:strokeWidth="1"/>
 </vector>
