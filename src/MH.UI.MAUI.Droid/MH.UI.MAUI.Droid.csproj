@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Maui.Controls" Version="9.0.70" />
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="9.0.70" />
+    <ProjectReference Include="..\..\..\MH.UI.Android\src\MH.UI.Android\MH.UI.Android.csproj" />
     <ProjectReference Include="..\MH.UI.MAUI\MH.UI.MAUI.csproj" />
   </ItemGroup>
 

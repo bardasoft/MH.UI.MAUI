@@ -1,19 +1,20 @@
 ﻿using AndroidX.RecyclerView.Widget;
-using MH.UI.MAUI.Controls;
+using MH.UI.Android.Controls;
 using Microsoft.Maui;
 using Microsoft.Maui.Handlers;
+using MauiTreeViewHost = MH.UI.MAUI.Controls.TreeViewHost;
 
 namespace MH.UI.MAUI.Droid.Features.TreeViewHostFt;
 
-public class TreeViewHostHandler : ViewHandler<TreeViewHost, RecyclerView> {
+public class TreeViewHostHandler : ViewHandler<MauiTreeViewHost, RecyclerView> {
   private TreeViewHostAdapter? _adapter;
 
-  public static IPropertyMapper<TreeViewHost, TreeViewHostHandler> PropertyMapper =
-    new PropertyMapper<TreeViewHost, TreeViewHostHandler>(ViewMapper) {
-      [nameof(TreeViewHost.ItemsSource)] = MapItemsSource
+  public static IPropertyMapper<MauiTreeViewHost, TreeViewHostHandler> PropertyMapper =
+    new PropertyMapper<MauiTreeViewHost, TreeViewHostHandler>(ViewMapper) {
+      [nameof(MauiTreeViewHost.ItemsSource)] = MapItemsSource
     };
 
-  public static CommandMapper<TreeViewHost, TreeViewHostHandler> CommandMapper = new(ViewCommandMapper);
+  public static CommandMapper<MauiTreeViewHost, TreeViewHostHandler> CommandMapper = new(ViewCommandMapper);
 
   public TreeViewHostHandler() : base(PropertyMapper, CommandMapper) { }
 
@@ -36,6 +37,6 @@ public class TreeViewHostHandler : ViewHandler<TreeViewHost, RecyclerView> {
     base.DisconnectHandler(platformView);
   }
 
-  private static void MapItemsSource(TreeViewHostHandler handler, TreeViewHost view) =>
+  private static void MapItemsSource(TreeViewHostHandler handler, MauiTreeViewHost view) =>
     handler._adapter?.UpdateItems(view.ItemsSource);
 }
