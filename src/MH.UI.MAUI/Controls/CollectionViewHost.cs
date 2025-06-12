@@ -14,6 +14,5 @@ public class CollectionViewHost : TreeViewHost, UIC.ICollectionViewHost {
     host.SetValue(TreeViewHost.ViewModelProperty, host.ViewModel);
     if (host.ViewModel == null) return;
     host.ViewModel.Host = host;
-    host._onViewModelChanged(oldValue, newValue);
   }
 }
