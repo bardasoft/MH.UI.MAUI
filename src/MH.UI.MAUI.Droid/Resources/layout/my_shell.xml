@@ -4,13 +4,4 @@
   a:id="@+id/shell_container"
   a:layout_width="match_parent"
   a:layout_height="match_parent">
-  
-  <TextView
-    a:id="@+id/content_text_view"
-    a:layout_width="match_parent"
-    a:layout_height="wrap_content"
-    a:gravity="center"
-    a:text="MyShell Content"
-    a:textColor="#000000"
-    a:textSize="18sp"/>
 </FrameLayout>
