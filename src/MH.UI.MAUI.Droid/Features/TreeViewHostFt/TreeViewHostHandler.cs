@@ -10,13 +10,9 @@ public class TreeViewHostHandler : ViewHandler<MauiTreeViewHost, RecyclerView> {
   private TreeViewHostAdapter? _adapter;
 
   public static IPropertyMapper<MauiTreeViewHost, TreeViewHostHandler> PropertyMapper =
-    new PropertyMapper<MauiTreeViewHost, TreeViewHostHandler>(ViewMapper) {
-      [nameof(MauiTreeViewHost.ItemsSource)] = MapItemsSource
-    };
+    new PropertyMapper<MauiTreeViewHost, TreeViewHostHandler>(ViewMapper) { };
 
-  public static CommandMapper<MauiTreeViewHost, TreeViewHostHandler> CommandMapper = new(ViewCommandMapper);
-
-  public TreeViewHostHandler() : base(PropertyMapper, CommandMapper) { }
+  public TreeViewHostHandler() : base(PropertyMapper) { }
 
   protected override RecyclerView CreatePlatformView() {
     var recyclerView = new RecyclerView(Context);
@@ -27,7 +23,7 @@ public class TreeViewHostHandler : ViewHandler<MauiTreeViewHost, RecyclerView> {
 
   protected override void ConnectHandler(RecyclerView platformView) {
     base.ConnectHandler(platformView);
-    _adapter = new(Context);
+    _adapter = new(Context, VirtualView.ViewModel.RootHolder);
     PlatformView.SetAdapter(_adapter);
   }
 
@@ -36,7 +32,4 @@ public class TreeViewHostHandler : ViewHandler<MauiTreeViewHost, RecyclerView> {
     platformView.SetAdapter(null);
     base.DisconnectHandler(platformView);
   }
-
-  private static void MapItemsSource(TreeViewHostHandler handler, MauiTreeViewHost view) =>
-    handler._adapter?.UpdateItems(view.ItemsSource);
 }
