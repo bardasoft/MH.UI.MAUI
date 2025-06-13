@@ -18,8 +18,9 @@ public class MyShellHandler : ViewHandler<MyShell, FrameLayout> {
 
   protected override void ConnectHandler(FrameLayout platformView) {
     base.ConnectHandler(platformView);
-    var treeViewHost = new MH.UI.Android.Controls.TreeViewHost(Context, (TreeView)VirtualView.BindingContext);
-    platformView.AddView(treeViewHost);
+
+    if (VirtualView.BindingContext is TreeView tv)
+      platformView.AddView(new MH.UI.Android.Controls.TreeViewHost(Context, tv));
   }
 
   protected override void DisconnectHandler(FrameLayout platformView) {
