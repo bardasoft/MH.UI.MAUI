@@ -4,7 +4,7 @@ using Microsoft.Maui;
 using Microsoft.Maui.Handlers;
 using MauiTreeViewHost = MH.UI.MAUI.Controls.TreeViewHost;
 
-namespace MH.UI.MAUI.Droid.Features.TreeViewHostFt;
+namespace MH.UI.MAUI.Droid.Handlers;
 
 public class TreeViewHostHandler : ViewHandler<MauiTreeViewHost, RecyclerView> {
   private TreeViewHostAdapter? _adapter;

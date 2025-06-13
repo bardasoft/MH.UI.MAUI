@@ -5,7 +5,7 @@ using MH.UI.MAUI.Controls;
 using Microsoft.Maui;
 using Microsoft.Maui.Handlers;
 
-namespace MH.UI.MAUI.Droid.Features.MyShellFt;
+namespace MH.UI.MAUI.Droid.Handlers;
 
 public class MyShellHandler : ViewHandler<MyShell, FrameLayout> {
   public static IPropertyMapper<MyShell, MyShellHandler> PropertyMapper =
@@ -20,7 +20,7 @@ public class MyShellHandler : ViewHandler<MyShell, FrameLayout> {
     base.ConnectHandler(platformView);
 
     if (VirtualView.BindingContext is TreeView tv)
-      platformView.AddView(new MH.UI.Android.Controls.TreeViewHost(Context, tv));
+      platformView.AddView(new Android.Controls.TreeViewHost(Context, tv));
   }
 
   protected override void DisconnectHandler(FrameLayout platformView) {

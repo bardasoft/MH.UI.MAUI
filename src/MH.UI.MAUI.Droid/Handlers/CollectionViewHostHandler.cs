@@ -4,7 +4,7 @@ using MH.UI.MAUI.Controls;
 using Microsoft.Maui;
 using Microsoft.Maui.Handlers;
 
-namespace MH.UI.MAUI.Droid.Features.CollectionViewHostFt;
+namespace MH.UI.MAUI.Droid.Handlers;
 
 public class CollectionViewHostHandler : ViewHandler<CollectionViewHost, RecyclerView> {
   private CollectionViewHostAdapter? _adapter;
