@@ -1,7 +1,7 @@
 ﻿using Android.Views;
 using Android.Widget;
 using AndroidX.RecyclerView.Widget;
-using MH.UI.MAUI.Droid.Utils;
+using MH.UI.Android.Utils;
 using MH.Utils.BaseClasses;
 
 namespace MH.UI.MAUI.Droid.Features.CollectionViewHostFt;
