@@ -1,4 +1,5 @@
 ﻿using AndroidX.RecyclerView.Widget;
+using MH.UI.Android.Controls;
 using MH.UI.MAUI.Controls;
 using Microsoft.Maui;
 using Microsoft.Maui.Handlers;
@@ -9,13 +10,9 @@ public class CollectionViewHostHandler : ViewHandler<CollectionViewHost, Recycle
   private CollectionViewHostAdapter? _adapter;
 
   public static IPropertyMapper<CollectionViewHost, CollectionViewHostHandler> PropertyMapper =
-    new PropertyMapper<CollectionViewHost, CollectionViewHostHandler>(ViewMapper) {
-      [nameof(CollectionViewHost.ItemsSource)] = MapItemsSource
-    };
+    new PropertyMapper<CollectionViewHost, CollectionViewHostHandler>(ViewMapper) { };
 
-  public static CommandMapper<CollectionViewHost, CollectionViewHostHandler> CommandMapper = new(ViewCommandMapper);
-
-  public CollectionViewHostHandler() : base(PropertyMapper, CommandMapper) { }
+  public CollectionViewHostHandler() : base(PropertyMapper) { }
 
   protected override RecyclerView CreatePlatformView() {
     var recyclerView = new RecyclerView(Context);
@@ -26,7 +23,7 @@ public class CollectionViewHostHandler : ViewHandler<CollectionViewHost, Recycle
 
   protected override void ConnectHandler(RecyclerView platformView) {
     base.ConnectHandler(platformView);
-    _adapter = new(Context);
+    _adapter = new(Context, VirtualView.ViewModel.RootHolder);
     PlatformView.SetAdapter(_adapter);
   }
 
@@ -35,7 +32,4 @@ public class CollectionViewHostHandler : ViewHandler<CollectionViewHost, Recycle
     platformView.SetAdapter(null);
     base.DisconnectHandler(platformView);
   }
-
-  private static void MapItemsSource(CollectionViewHostHandler handler, CollectionViewHost view) =>
-    handler._adapter?.UpdateItems(view.ItemsSource);
 }
