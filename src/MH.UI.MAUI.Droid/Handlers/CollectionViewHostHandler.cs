@@ -23,7 +23,7 @@ public class CollectionViewHostHandler : ViewHandler<CollectionViewHost, Recycle
 
   protected override void ConnectHandler(RecyclerView platformView) {
     base.ConnectHandler(platformView);
-    _adapter = new(Context, VirtualView.ViewModel.RootHolder);
+    _adapter = new(Context, VirtualView.ViewModel);
     PlatformView.SetAdapter(_adapter);
   }
 
