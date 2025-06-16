@@ -7,7 +7,6 @@ namespace MH.UI.MAUI.Droid;
 public static class MauiProgram {
   public static void ConfigureHandlers(IMauiHandlersCollection handlers) {
     handlers.AddHandler<CollectionViewHost, CollectionViewHostHandler>();
-    handlers.AddHandler<MyShell, MyShellHandler>();
     handlers.AddHandler<TreeViewHost, TreeViewHostHandler>();
   }
 }
