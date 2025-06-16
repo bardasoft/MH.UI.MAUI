@@ -1,16 +1,15 @@
 ﻿using AndroidX.RecyclerView.Widget;
 using MH.UI.Android.Controls;
-using MH.UI.MAUI.Controls;
 using Microsoft.Maui;
 using Microsoft.Maui.Handlers;
 
 namespace MH.UI.MAUI.Droid.Handlers;
 
-public class CollectionViewHostHandler : ViewHandler<CollectionViewHost, RecyclerView> {
+public class CollectionViewHostHandler : ViewHandler<Controls.CollectionViewHost, RecyclerView> {
   private CollectionViewHostAdapter? _adapter;
 
-  public static IPropertyMapper<CollectionViewHost, CollectionViewHostHandler> PropertyMapper =
-    new PropertyMapper<CollectionViewHost, CollectionViewHostHandler>(ViewMapper) { };
+  public static IPropertyMapper<Controls.CollectionViewHost, CollectionViewHostHandler> PropertyMapper =
+    new PropertyMapper<Controls.CollectionViewHost, CollectionViewHostHandler>(ViewMapper) { };
 
   public CollectionViewHostHandler() : base(PropertyMapper) { }
 
