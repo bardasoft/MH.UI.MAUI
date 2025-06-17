@@ -22,7 +22,8 @@ public class CollectionViewHostHandler : ViewHandler<Controls.CollectionViewHost
 
   protected override void ConnectHandler(RecyclerView platformView) {
     base.ConnectHandler(platformView);
-    _adapter = new(Context, VirtualView.ViewModel);
+    // TODO not compatible with current adapter. I am not planing to use this handler. it is here just for reference how to do it.
+    //_adapter = new(Context, VirtualView.ViewModel);
     PlatformView.SetAdapter(_adapter);
   }
 
